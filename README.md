@@ -1,2 +1,13 @@
-# RFID-Follower
-Proiect pentru materia Introduction to Robotics
+# RFID Follower
+
+### How it works?
+
+## General description
+
+## Hardware Design
+
+## Software Design
+
+## Results
+
+## Conclusions
