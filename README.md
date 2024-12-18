@@ -81,6 +81,46 @@ RFID-Follower is useful for others because it offers an efficient, economical an
 |8     | SS | SPI connection for controlling which slave device is active |
 
 
+### Ultrasonic Sensor Pins
+
+| Pin | Pin label | Use|
+| ------------- | ------------- | -------------|
+| 1    | VCC | 5V Power Input, powers the module|
+|2     | TRIG | Sends signals to some object |
+|3     | ECHO |Receive signals from some object|
+|4     | GND |Common ground for the circuit|
+
+
+
+### H Deck Pins
+
+| Pin  | Use|
+| ------------- | -------------|
+| OUT1 | Motor A outputs|
+|OUT2  | Motor A outputs |
+|OUT3 |Motor B outputs|
+|OUT4 |Motor B outputs|
+|ENB | Speed control for Motor B |
+|IN4 | Control direction of Motor B |
+|IN3 | Control direction of Motor B |
+|IN2 | Control direction of Motor A |
+|IN1 | Control direction of Motor A |
+|ENA | Speed control for Motor A |
+|5V | Logic supply voltage |
+|GND | Ground connection |
+|12V | Motor supply voltage |
+
+
+### IR Sensor Pins
+
+| Pin | Pin label | Use|
+| ------------- | ------------- | -------------|
+| VCC | 5V | Power Supply |
+| GND | GND | Ground connection |
+| OUT1 | A1 | Left sensor |
+| OUT2 | A2 | Center sensor |
+| OUT3 | A3 | Right sensor | 
+
 
 ## Software Design
 
