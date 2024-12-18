@@ -16,12 +16,14 @@ I started from the need to automate internal transport in small or medium-sized 
 
 RFID-Follower is useful for others because it offers an efficient, economical and easy-to-implement solution in various industrial fields. For me, it represents an opportunity to put into practice the knowledge of robotics, electronics and programming, contributing to the development of technologies applied in the real world.
 
-### Block Diagram
 
-![Block Diagram](./Photos/block_diagram.png)
 
 
 ## Hardware Design
+
+### Block Diagram
+
+![Block Diagram](./Photos/block_diagram.png)
 
 ### Electrical Diagram
 
@@ -122,8 +124,22 @@ RFID-Follower is useful for others because it offers an efficient, economical an
 | OUT3 | A3 | Right sensor | 
 
 
+
+### Photos of the project
+
+![Photo 1](./Photos/photo2.jpeg)
+![Photo 2](./Photos/photo1.jpeg)
+
 ## Software Design
 
 ## Results
+
+## Journal
+
+20.11.2024 Project decision
+4.12.2024 Creating a repository for the project on GitHub
+12.12.2024 Finished the hardware part of the project
+15.12.2024 Started writing the code for the game
+17.12.2024 Update the GitHub repository with all the hardware information
 
 ## Conclusions
