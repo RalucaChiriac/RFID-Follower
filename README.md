@@ -42,6 +42,46 @@ RFID-Follower is useful for others because it offers an efficient, economical an
 | 9  |  [3 Channel Line Tracking Module](https://www.sigmanortec.ro/Modul-Urmarire-Linie-3-Canale-p148570939) | 1  | https://www.data-media.gr/files/KS0453.pdf | Sigmanortec
 | 10 | Jumper Wires | many | N/A | Faculty
 
+### Arduino Uno Pins
+
+| Pin | Functionality | Use|
+| ------------- | ------------- | -------------|
+| 3V | 3.3V power supply | Provides a 3.3V power supply to components in the circuit|
+| 5V | 5V | Connect the Motors to the Arduino Uno(Driver) |
+|GND2| ground | Ground is the reference point for all voltages in the circuit, ensuring that the components operate correctly|
+|A0| positive point of the buzzer |Connects to the positive point of the buzzer|
+|A1|IR1 | Connects the sensor to the Arduino Uno |
+|A2|IR2 | Connects the sensor to the Arduino Uno |
+|A3|IR3 | Connects the sensor to the Arduino Uno |
+|SDA|trig |Sends signals to some object |
+|SCL|echo |Receive signals from some object |
+|GND| ground | Ground for RFID Module|
+|D12| SPI MISO| Connected to the RFID, receives data from the RFID|
+|D11| SPI MOSI| Connected to the RFID, transmits data to the RFID|
+|D13| SPI SCK| Connected to the RFID, generates the clock signal to synchronize data transfer between the controller and the peripheral|
+|D10| SPI SS| Connected to the RFID, used to enable or disable communication with the specific SPI peripheral|
+|D9|RST |Connected to the RFID, used to reset the module |
+|D7|MDriver |Motor driver control connections |
+|D6|SPD1 |PWM signals from the Arduino used for motor speed control |
+|D5|SPD2 | PWM signals from the Arduino used for motor speed control|
+|D4|MDriver|Motor driver control connections |
+|D3|MDriver|Motor driver control connections |
+|D2|MDriver|Motor driver control connections |
+
+### RFID Pins
+
+| Pin | Pin label | Use|
+| ------------- | ------------- | -------------|
+| 3.3V | 3V power supply | Provides a 3V power supply to components in the module|
+|2     | RST | Used to reset the RFID module |
+|3     | GND |Ground connection|
+|5     | MISO |SPI communication, transmits data to the controller|
+|6     | MOSI | SPI communication, receives data from the controller|
+|7     | SKC | SPI bus clock signal, SPI communication, used for timing and synchronization|
+|8     | SS | SPI connection for controlling which slave device is active |
+
+
+
 ## Software Design
 
 ## Results
