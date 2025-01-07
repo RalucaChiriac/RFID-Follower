@@ -17,6 +17,11 @@ I started from the need to automate internal transport in small or medium-sized 
 RFID-Follower is useful for others because it offers an efficient, economical and easy-to-implement solution in various industrial fields. For me, it represents an opportunity to put into practice the knowledge of robotics, electronics and programming, contributing to the development of technologies applied in the real world.
 
 
+## Project Description 
+
+RFID Follower is a robot for transporting objects in factories or other production-oriented spaces. The robot uses three infrared sensors to follow a line and has two direct current geared motors for movement. With the help of the RFID reader, it recognizes RFID cards on the route, each indicating stopping places with different durations and actions. To prevent collisions, it is equipped with a front ultrasonic sensor, alerting the operator with an audible alarm.
+The RFID cards are independent, each with its action being placed next to the route, with different action execution times.
+
 
 
 ## Hardware Design
@@ -132,14 +137,108 @@ RFID-Follower is useful for others because it offers an efficient, economical an
 
 ## Software Design
 
+##### Implementation Overview
+
+#### Flow First Initialization
+
+Once the robot is powered on, it initializes the sensors and motors. The robot performs a self-check by activating the ultrasonic distance sensor to measure its surroundings and checking the status of the line sensors.
+
+* The motors are set to their idle state, ready to move when a valid command is received.
+* The RFID reader is also initialized, ready to scan cards and trigger specific actions.
+
+At this stage, the robot is waiting for RFID cards to be scanned, or it will proceed based on the pre-programmed line-following behavior.
+
+#### Project Libraries
+
+* MFRC522 Library:
+Manages communication with the RFID reader module, enabling card scanning and action triggering. Simplifies reading RFID card IDs and performing tasks based on scanned data.
+
+* NewPing Library:
+Optimizes ultrasonic sensor usage for accurate distance measurements. Enables real-time obstacle detection to ensure safe navigation.
+
+* SPI.h Library:
+Manages the Serial Peripheral Interface (SPI) communication between the ESP32 and the RFID reader. Ensures reliable data transfer for the RFID system.
+
+
+#### Functionalities from labs to game
+
+##### Lab 0: GPIO for Digital Input from Line Sensors and Ultrasonic Sensor
+I used GPIO (General Purpose Input/Output) pins to read the digital signals from the line-following sensors. These sensors detect whether the robot is aligned with the track by sending a HIGH or LOW signal. If the sensor detects a line (usually black on a white surface), it outputs a HIGH signal. This data is then used by the robot to make decisions on how to adjust its movement (e.g., turning left or right, or going straight).
+
+##### Lab 3: PWM for Motor Control
+To control the motors, I used Pulse Width Modulation (PWM), which allows precise control over the speed of the motors. PWM signals are sent to the motor drivers, adjusting the duty cycle to control how fast the motors rotate.
+
+#####  Lab 5: SPI for RFID Reader Communication
+For reading RFID cards, the robot uses the SPI (Serial Peripheral Interface) protocol. The SPI bus is responsible for communication between the microcontroller and the MFRC522 RFID module. The microcontroller sends commands over the SPI interface, and the RFID module returns the card data. This allows the robot to perform specific actions based on the card scanned, such as moving, stopping, or performing a task.
+
+
+#### Source Code Description
+
+##### Main Functions:
+
+###### setup():
+Initializes the core components of the robot, including the motor drivers. It sets up the SPI communication for the RFID module and configures the PWM pins (spdA, spdB) for motor speed control.
+
+###### loop():
+The main control loop that continuously checks for sensor input, handles the robot's movement based on line sensor data, and processes actions triggered by RFID card scans. It checks the distance using the ultrasonic sensor and determines whether to stop, move forward, or turn. It also checks the RFID reader for new card scans and triggers the associated actions based on the card IDs.
+
+###### Forward():
+Commands the robot to move forward by activating both motors with the defined PWM speed. It is triggered when the robot should proceed in a straight line, based on the input from the line-following sensors.
+
+###### Right():
+Turns the robot to the right by controlling the direction of the motors. This is triggered when the line sensor indicates a right turn is needed.
+
+###### Left():
+Moves the robot to the left by adjusting the direction of the motors. This function is used when the line sensor indicates a left turn.
+
+###### Stop1():
+Stops all movement of the robot by deactivating the motor control pins. It is used to halt the robot when an obstacle is detected or when an RFID card triggers a stop action.
+
+##### Global Variables:
+
+* viteza:
+Controls the speed of the robot’s motors by adjusting the PWM signal. It determines how fast the motors rotate and thus influences the movement speed of the robot.
+
+* last_card_read:
+Stores the timestamp of the last RFID card scan to prevent multiple reads in quick succession and ensure the robot processes each card only once in a specified time interval (MINIMUM_TIME_BETWEEN_CARDS).
+
+* actionInProgress:
+A flag that indicates whether an action triggered by an RFID card is currently being executed. It ensures that no conflicting actions are triggered while the robot is in the middle of a task.
+
+* currentActionValue:
+Stores the duration (in milliseconds) of the action triggered by an RFID card, such as how long the robot should stop or beep.
+
+* currentActionType:
+Defines the type of action that the robot should perform based on the scanned RFID card, such as "Stop", "Beep&stop", or any other predefined action.
+
+* lastProcessedCard:
+Keeps track of the last processed RFID card's ID to avoid repetitive actions if the same card is scanned multiple times within a short period.
+
+* lineSensorState:
+Holds the current state (HIGH or LOW) of the three line-following sensors. This information is used to control the robot’s movement along a predefined path.
+
+* obstacleDistance:
+Stores the distance measured by the ultrasonic sensor to check for obstacles. It is used to trigger the robot to stop or avoid obstacles when detected.
+
+* currentCardID:
+Holds the ID of the most recently scanned RFID card. This variable is used to trigger specific actions based on the card's identity.
+
+* actionStartTime:
+The timestamp of when an action (such as stopping or beeping) is triggered by an RFID card. It helps manage the duration of actions before the robot resumes normal operation.
+
+
 ## Results
+
+[![RFID Follower](https://img.youtube.com/vi/S-yAwiONMLc/0.jpg)](https://www.youtube.com/watch?v=S-yAwiONMLc)
 
 ## Journal
 
-20.11.2024 Project decision
-4.12.2024 Creating a repository for the project on GitHub
-12.12.2024 Finished the hardware part of the project
-15.12.2024 Started writing the code for the game
-17.12.2024 Update the GitHub repository with all the hardware information
+* 20.11.2024 Project decision
+* 4.12.2024 Creating a repository for the project on GitHub
+* 12.12.2024 Finished the hardware part of the project
+* 15.12.2024 Started writing the source code
+* 17.12.2024 Updated the GitHub repository with all the hardware information
+* 06.01.2025 Finished to write the source code
+* 08.01.2025 Updated the Github repository with the source code description
 
 ## Conclusions
