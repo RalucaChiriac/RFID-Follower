@@ -33,9 +33,9 @@ MFRC522 mfrc522(RFID_SDA, RFID_RST);
 long int last_card_read;
 
 #define COMMANDS_LENGTH 3
-char* Type[4] = {"Stop", "Beep&stop", "Stop"}; // functii card
-int Value[4] = {3000, 1000, 5000};
-char* CardID[4] = {"03 BE 20 0D", "B3 0A 9D F7", "A3 7A CF 0C"}; // coduri card
+char* Type[3] = {"Stop", "Beep&stop", "Stop"}; // functii card
+int Value[3] = {3000, 1000, 5000};
+char* CardID[3] = {"03 BE 20 0D", "B3 0A 9D F7", "A3 7A CF 0C"}; // coduri card
 
 unsigned long actionStartTime = 0;
 bool actionInProgress = false;
