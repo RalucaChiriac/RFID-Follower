@@ -25,7 +25,6 @@ NewPing sonar(TRIG, ECHO, MAX_DISTANCE);
 #define RFID_MOSI 11    // pini RFID
 #define RFID_MISO 12
 #define RFID_RST 9
-#define MINIMUM_TIME_BETWEEN_CARDS 2000 // delay timp minim intre carduri
 
 int viteza = 120;
 
@@ -108,7 +107,7 @@ void loop() {
   }
 
   // Procesare card RFID
-  if (currentMillis - last_card_read >= MINIMUM_TIME_BETWEEN_CARDS && !actionInProgress) {
+  if (!actionInProgress) {
     if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) {
       return;
     }
