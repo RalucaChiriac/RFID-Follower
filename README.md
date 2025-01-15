@@ -242,3 +242,12 @@ The timestamp of when an action (such as stopping or beeping) is triggered by an
 * 08.01.2025 Updated the Github repository with the source code description
 
 ## Conclusions
+
+The process of developing the game was very interesting and engaging, even if I encountered some obstacles in the making. Mixing the RFID Card detecting, Line Follower, and ultrasonic object detecting was a little hard to do, but in the final state I made a software solution to address this issue of not getting others signals in the same time of using only one of them. For example, if I wanted to stop the machine by putting my hand agains it and in the same time the machine was stopped because it was on a NFC tag, the machine tried to move and that was because the information from other sensors like the one from ultrasonic sensors was not received in a time manner way and the reason for that was some delay() functions used in source code... . I rethinked the whole logic in a way that the information from all sensors are processed in the same time and not letting the machine to move only if the situation enforrce it.
+
+## Bibliography 
+
+[Dual full-bridge driver](https://www.st.com/resource/en/datasheet/l298.pdf)  
+[3-channel Line Tracking Module](https://www.data-media.gr/files/KS0453.pdf)  
+[MFRC522.h RFID library](https://github.com/miguelbalboa/rfid)  
+[NewPing.h library](https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home)  
